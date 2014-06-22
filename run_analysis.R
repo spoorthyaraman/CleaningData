@@ -1,96 +1,86 @@
 ##########################################################################################################
 
-## Coursera Getting and Cleaning Data Course Project
+## Here is the code for the getting the tiday data set from the given data set about Samsung.
 
-#The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations
-#or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.  
-#
-#One of the most exciting areas in all of data science right now is wearable computing - see for example this article . Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
-#
-#http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
-#
-#Here are the data for the project: 
-#
-#https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
-#
-# You should create one R script called run_analysis.R that does the following. 
-# Merges the training and the test sets to create one data set.
-# Extracts only the measurements on the mean and standard deviation for each measurement. 
-# Uses descriptive activity names to name the activities in the data set
-# Appropriately labels the data set with descriptive variable names. 
-# Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
-#
-# Author : Spoorthy Raman
-# Mail   : SpoorthyRaman@gmail.com
+##Note - Ensure that your working directory points to the samsung data set provided in the assignment
 
+## Author : Spoorthy Raman
 ##########################################################################################################
 
 
-# Clean up workspace
+## Clean up workspace
 rm(list=ls())
 
-### Section 1. Merge the training and the test sets to create one data set.
+##Section 1. Merge the training and the test sets to create one data set.
 
-#set working directory to the location where the UCI HAR Dataset was unzipped
-setwd('/Users/spraman/Code/Cousera/DataScience/GettingAndCleaningData/CourseProject/Source//');
 
-# Read in the data from files
-features     = read.table('./features.txt',header=FALSE); #imports features.txt
-activityType = read.table('./activity_labels.txt',header=FALSE); #imports activity_labels.txt
-subjectTrain = read.table('./train/subject_train.txt',header=FALSE); #imports subject_train.txt
-xTrain       = read.table('./train/x_train.txt',header=FALSE); #imports x_train.txt
-yTrain       = read.table('./train/y_train.txt',header=FALSE); #imports y_train.txt
+## Read in the data from files in the directory
 
-# Assigin column names to the data imported above
+features     = read.table('./features.txt',header=FALSE); ##imports features.txt
+activityType = read.table('./activity_labels.txt',header=FALSE); ##imports activity_labels.txt
+subjectTrain = read.table('./train/subject_train.txt',header=FALSE); ##imports subject_train.txt
+xTrain       = read.table('./train/x_train.txt',header=FALSE); ##imports x_train.txt
+yTrain       = read.table('./train/y_train.txt',header=FALSE); ##imports y_train.txt
+
+## Assigin readable column names to the data imported above
 colnames(activityType)  = c('activityId','activityType');
 colnames(subjectTrain)  = "subjectId";
 colnames(xTrain)        = features[,2]; 
 colnames(yTrain)        = "activityId";
 
-# cCreate the final training set by merging yTrain, subjectTrain, and xTrain
+## Create the final training set by column merging yTrain, subjectTrain, and xTrain
 trainingData = cbind(yTrain,subjectTrain,xTrain);
 
-# Read in the test data
-subjectTest = read.table('./test/subject_test.txt',header=FALSE); #imports subject_test.txt
-xTest       = read.table('./test/x_test.txt',header=FALSE); #imports x_test.txt
-yTest       = read.table('./test/y_test.txt',header=FALSE); #imports y_test.txt
+## Read in the test data
+subjectTest = read.table('./test/subject_test.txt',header=FALSE); ##imports subject_test.txt
+xTest       = read.table('./test/x_test.txt',header=FALSE); ##imports x_test.txt
+yTest       = read.table('./test/y_test.txt',header=FALSE); ##imports y_test.txt
 
-# Assign column names to the test data imported above
+## Assign readable column names to the test data imported above
 colnames(subjectTest) = "subjectId";
 colnames(xTest)       = features[,2]; 
 colnames(yTest)       = "activityId";
 
 
-# Create the final test set by merging the xTest, yTest and subjectTest data
+## Create the final test set by column merging the xTest, yTest and subjectTest data
 testData = cbind(yTest,subjectTest,xTest);
 
 
-# Combine training and test data to create a final data set
+## Combine training and test data to create a final data set by row merging the 2
 finalData = rbind(trainingData,testData);
 
-# Create a vector for the column names from the finalData, which will be used
-# to select the desired mean() & stddev() columns
+## Create a vector for the column names from the finalData, which will be used
+## to select the desired mean() & stddev() columns
 colNames  = colnames(finalData); 
 
+####At the end of this section, we have a single data set to work up on#####
+##################################################################################
 
 ## Section 2. Extract only the measurements on the mean and standard deviation for each measurement.
 
-# Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others
+## Create a logicalVector that contains TRUE values for the ID, mean() & stddev() columns and FALSE for others. The grepL command is used to pattern match the column names and then create a vector of column names that we are intersted in. "?grepl" for more info
 logicalVector = (grepl("activity..",colNames) | grepl("subject..",colNames) | grepl("-mean..",colNames) & !grepl("-meanFreq..",colNames) & !grepl("mean..-",colNames) | grepl("-std..",colNames) & !grepl("-std()..-",colNames));
 
 # Subset finalData table based on the logicalVector to keep only desired columns
 finalData = finalData[logicalVector==TRUE];
 
-
-# Merge the finalData set with the acitivityType table to include descriptive activity names
-finalData = merge(finalData,activityType,by='activityId',all.x=TRUE);
-
-# Updating the colNames vector to include the new column names after merge
-colNames  = colnames(finalData); 
+##### At the end of this section, there is a trimmed data set that has only the columns that we need ##########
+##################################################################################
 
 ## Section 3. Use descriptive activity names to name the activities in the data set
 
-# Cleaning up the variable names
+## Merge the finalData set with the acitivityType table to include descriptive activity names
+finalData = merge(finalData,activityType,by='activityId',all.x=TRUE);
+
+## Updating the colNames vector to include the new column names after merge
+colNames  = colnames(finalData);
+
+###### At the end of this stage we have a dataset that contains readble activity names for the data present#########
+##################################################################################
+
+##Section 4: Appropriately label the data set with descriptive variable names.
+
+## Cleaning up the variable names. The loop examines the names of each column and based on the text present, assigns a standard text across for all columns. Examp - mean is renamed to Mean for all types of means. Some of the names are exapnded for better readability - GyroMag is renamed to GyroMagnitude. Pattern matching is used to eliminate the noise and replace the text."?gsub" for more info
 for (i in 1:length(colNames)) 
 {
   colNames[i] = gsub("\\()","",colNames[i])
@@ -110,17 +100,25 @@ for (i in 1:length(colNames))
 # Reassigning the new descriptive column names to the finalData set
 colnames(finalData) = colNames;
 
+###### At the end the data has all columns that are more readable#########
+##################################################################################
+
 ## Section 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-# Create a new table, finalDataNoActivityType without the activityType column
+## Create a new table, finalDataNoActivityType without the activityType column
 finalDataNoActivityType  = finalData[,names(finalData) != 'activityType'];
 
-# Summarizing the finalDataNoActivityType table to include just the mean of each variable for each activity and each subject
+## Summarizing the finalDataNoActivityType table to include just the mean of each variable for each activity and each subject. This is an aggregate operation that calculates the mean per subjectID and activityID
 tidyData    = aggregate(finalDataNoActivityType[,names(finalDataNoActivityType) != c('activityId','subjectId')],by=list(activityId=finalDataNoActivityType$activityId,subjectId = finalDataNoActivityType$subjectId),mean);
 
-# Merging the tidyData with activityType to include descriptive acitvity names
+## Merging the tidyData with activityType to include descriptive acitvity names
 tidyData    = merge(tidyData,activityType,by='activityId',all.x=TRUE);
 
-# Export the tidyData set 
+
+#### Now, the data has a tidy dataset with all qualities of a tidy dataset#######
+##################################################################################
+
+
+## Export the tidyData set to a csv file to upload for the assignment
 write.table(tidyData, file = "tidayData.csv", sep = ",", col.names = NA,
 qmethod = "double")
