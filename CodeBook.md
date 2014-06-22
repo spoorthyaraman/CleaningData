@@ -3,8 +3,8 @@ CodeBook for the Course Project Assignment
 
 ###Information about variables
 
-activityId
-	- ID of the different activities 
+#activityId
+	ID of the different activities 
 	1 WALKING
 	2 WALKING_UPSTAIRS
 	3 WALKING_DOWNSTAIRS
