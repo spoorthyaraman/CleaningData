@@ -1,8 +1,8 @@
 ##########################################################################################################
 
-## Here is the code for the getting the tiday data set from the given data set about Samsung.
+## Here is the code for the getting the tidy data set from the given data set about Samsung.
 
-##Note - Ensure that your working directory points to the samsung data set provided in the assignment
+##NOTE - Ensure that your working directory points to the samsung data set provided in the assignment
 
 ## Author : Spoorthy Raman
 ##########################################################################################################
