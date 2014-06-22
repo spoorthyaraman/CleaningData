@@ -3,7 +3,7 @@ CodeBook for the Course Project Assignment
 
 ###Information about variables
 
-####activityId
+######activityId
 	ID of the different activities 
 	1 WALKING
 	2 WALKING_UPSTAIRS
@@ -12,82 +12,82 @@ CodeBook for the Course Project Assignment
 	5 STANDING
 	6 LAYING
 
-subjectId
-	-Indicates different people who took the experiment. Each person is mapped to a subjectId
+######subjectId
+	Indicates different people who took the experiment. Each person is mapped to a subjectId
 	
-timeBodyAccMagnitudeMean
+######timeBodyAccMagnitudeMean
 	Mean of the time for BodyAccelerationMagnitude
 	Unit - seconds
 
-timeBodyAccMagnitudeStdDev
+######timeBodyAccMagnitudeStdDev
 	Standard deviation of the time for BodyAccelerationMagnitude
 	Continuous unit
 	
-timeGravityAccMagnitudeMean
+######timeGravityAccMagnitudeMean
 	Mean of the time for GravityAccelerationMagnitude
 	Unit - Seconds
 	
-timeGravityAccMagnitudeStdDev
+######timeGravityAccMagnitudeStdDev
 	Standard deviation of the time for GravityAccelerationMagnitude
 	Continuous unit
 
-timeBodyAccJerkMagnitudeMean	
+######timeBodyAccJerkMagnitudeMean	
 	Mean of the time for BodyAccelerationJerkMagnitude
 	Unit - Seconds
 
-timeBodyAccJerkMagnitudeStdDev	
+######timeBodyAccJerkMagnitudeStdDev	
 	Standard deviation of the time for BodyAccelerationJerkMagnitude
 	Continuous unit
 	
-timeBodyGyroMagnitudeMean	
+######timeBodyGyroMagnitudeMean	
 	Mean of the time for BodyGyroMagnitude
 	Unit - Seconds
 
-timeBodyGyroMagnitudeStdDev	
+######timeBodyGyroMagnitudeStdDev	
 	Standard deviation of the time for BodyGyroMagnitude
 	Continuous unit
 	
-timeBodyGyroJerkMagnitudeMean
+######timeBodyGyroJerkMagnitudeMean
 	Mean of the time for BodyGyroJerkMagnitude
 	Unit - Seconds	
 
-timeBodyGyroJerkMagnitudeStdDev	
+######timeBodyGyroJerkMagnitudeStdDev	
 	Standard deviation of the time for BodyGyroJerkMagnitude
 	Continuous unit
 	
-freqBodyAccMagnitudeMean
+######freqBodyAccMagnitudeMean
 	Mean of the frequency for BodyAccelerationMagnitude
 	Unit - Hertz
 	
-freqBodyAccMagnitudeStdDev
+######freqBodyAccMagnitudeStdDev
 	Standard deviation of the frequency for BodyAccelerationMagnitude
 	Continuous unit
 	
-freqBodyAccJerkMagnitudeMean
+######freqBodyAccJerkMagnitudeMean
 	Mean of the frequency for BodyAccelerationJerkMagnitude
 	Unit - Hertz
 	
-freqBodyAccJerkMagnitudeStdDev
+######freqBodyAccJerkMagnitudeStdDev
 	Standard deviation of the frequency for BodyAccelerationJerkMagnitude
 	Continuous unit
 		
-freqBodyGyroMagnitudeMean
+######freqBodyGyroMagnitudeMean
 	Mean of the frequency for BodyGyroMagnitude
 	Unit - Hertz
 	
-freqBodyGyroMagnitudeStdDev	
+######freqBodyGyroMagnitudeStdDev	
 	Standard deviation of the frequency for BodyGyroMagnitude
 	Continuous unit
 	
-freqBodyGyroJerkMagnitudeMean
+######freqBodyGyroJerkMagnitudeMean
 	Mean of the frequency for BodyGyroJerkMagnitude
 	Unit - Hertz
 		
-freqBodyGyroJerkMagnitudeStdDev	
+######freqBodyGyroJerkMagnitudeStdDev	
 	Standard deviation of the frequency for BodyGyroJerkMagnitude
 	Continuous unit
 	
-activityType
+######activityType
 	Type of the activity performed when these readings were recorded
 	Factor
 	
