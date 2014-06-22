@@ -1,7 +1,7 @@
 Getting and Cleaning Data - Course Project
 ===========================================
 
-This is a part the data science course offered by Johns Hopkins University. This course project in the 'getting and cleaning data' module.
+This is a part of the data science track offered by Johns Hopkins University. This course project is in the 'getting and cleaning data' module.
 The purpose of this project is to demonstrate  ability to collect, work with, and clean a data set.
 
 ### Script Usage Details
