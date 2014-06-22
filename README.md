@@ -5,8 +5,9 @@ This is a part of the data science track offered by Johns Hopkins University. Th
 The purpose of this project is to demonstrate  ability to collect, work with, and clean a data set.
 
 ### Script Usage Details
-1. Point your current working directory in R to the dataset folder provided in the assignment called "getdata_projectfiles_UCI HAR Dataset". Be sure to extract the .zip. You could use the setwd() command in R for this operation
-2. Run the run_analysis.R file as is.
+Step 1: Point your current working directory in R to the dataset folder provided in the assignment called "getdata_projectfiles_UCI HAR Dataset". Be sure to extract the .zip. You could use the setwd() command in R for this operation
+Step 2: Run the run_analysis.R file as is.
+Step 3: A .csv file called "tidyData.csv" will be generated in your working directory, which is a tidy dataset expected for this assignment
 
 ### Project Summary
 The following is a summary description of the project instructions
